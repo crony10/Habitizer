@@ -1,8 +1,13 @@
 import React, { Fragment, useState, useRef } from "react";
+import './fonts/fonts.css'
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCoffee, faUser, faFire, faBullseye, faGift } from "@fortawesome/free-solid-svg-icons"
 
 
-const DoneHabit = ({ habit,setHabitsChange }) => {
+const DoneHabit = ({ habit, setHabitsChange }) => {
     let yesRef = useRef();
+
     const [habit_id, setHabit_id] = useState(habit.habit_id);
 
     // Function to increase a streak
@@ -10,12 +15,13 @@ const DoneHabit = ({ habit,setHabitsChange }) => {
         try {
 
             yesRef.current.setAttribute("disabled", "disabled");
-            if (habit.habit_streak !== habit.habit_duration) {
-                habit_streak += 1;
-            }
-            else if(habit.habit_sreak > habit.habit_duration){
+
+            if ((habit_streak + 1) === habit.habit_duration) {
                 alert("Congratulation now you can claim your reward of: " + habit.habit_reward);
                 return;
+            }
+            else if (habit.habit_streak !== habit.habit_duration) {
+                habit_streak += 1;
             }
             else {
                 alert("Congratulation now you can claim your reward of: " + habit.habit_reward);
@@ -28,12 +34,12 @@ const DoneHabit = ({ habit,setHabitsChange }) => {
 
             const myHeaders = new Headers();
 
-            myHeaders.append("Content-type","application/json");
-            myHeaders.append("token",localStorage.token);            
+            myHeaders.append("Content-type", "application/json");
+            myHeaders.append("token", localStorage.token);
 
             const res = await fetch(`http://localhost:5000/dashboard/habits/increaseStreak/${id}`, {
                 method: "PUT",
-                headers:myHeaders,
+                headers: myHeaders,
                 body: JSON.stringify(body)
             });
             // console.log(res);
@@ -59,8 +65,8 @@ const DoneHabit = ({ habit,setHabitsChange }) => {
 
             const myHeaders = new Headers();
 
-            myHeaders.append("Content-type","application/json");
-            myHeaders.append("token",localStorage.token);
+            myHeaders.append("Content-type", "application/json");
+            myHeaders.append("token", localStorage.token);
 
             const res = await fetch(`http://localhost:5000/dashboard/habits/decreaseStreak/${id}`, {
                 method: "PUT",
@@ -80,40 +86,52 @@ const DoneHabit = ({ habit,setHabitsChange }) => {
         <Fragment>
             <button
                 type="button"
-                class="btn btn-success"
-                style={{ margin: "10px" }}
+                className="btn text-light mr-3 ml-3 mt-2"
                 data-toggle="modal"
-                data-target={`#id${habit.habit_id}`}>
+                data-target={`#id${habit.habit_id}`}
+                style={{
+                    // margin: "10px",
+                    background: '#6C63FF'
+                }}
+            >
                 Done?
             </button>
 
-            <div class="modal" id={`id${habit_id}`}>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
+            <div className="modal" id={`id${habit_id}`}>
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
                             <div >
-                                <h4 className="m-5" class="modal-title">Have you completed this habit today?🔥</h4>
-                                {/* <button type="button" class="close" data-dismiss="modal">&times;</button> */}
+                                <span className="my-auto h4">
+                                    <FontAwesomeIcon className="" style={{
+                                        color: '#6c63ff'
+                                    }} icon={faBullseye} />
+                                </span>
+
+                                <span className="ml-2 h4" >
+                                    Have you completed this habit today?
+                                </span>
+                                {/* <button type="button" className="close" data-dismiss="modal">&times;</button> */}
                             </div>
                         </div>
 
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <form className="d-flex">
                                 <div >
-                                    <button type="button"
-                                        className="btn btn-success"
+                                    <Button type="button"
+                                        className="btn btn-success custom-btn mr-1"
                                         data-dismiss="modal"
-                                        class="btn btn-outline-primary mr-1"
+                                        // className="btn btn-outline-primary mr-1"
                                         ref={yesRef}
                                         onClick={() => { increaseStreak(habit.habit_id, habit.habit_streak) }}>
                                         Yes
-                                    </button>
+                                    </Button>
                                 </div>
                                 <div>
                                     <button type="button"
-                                     data-dismiss="modal"
-                                        className="btn btn-warning"
-                                        class="btn btn-outline-primary ms-1"
+                                        data-dismiss="modal"
+                                        className="btn custom-btn ms-1"
+                                        // className="btn btn-outline-primary ms-1"
                                         onClick={() => { decreaseStreak(habit.habit_id, habit.habit_streak) }}>
                                         No
                                     </button>
@@ -123,8 +141,21 @@ const DoneHabit = ({ habit,setHabitsChange }) => {
                         </div>
 
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <div className="modal-footer">
+                            {/* <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button> */}
+
+                            <button
+                                type="button"
+                                className="btn text-light mr-3 ml-3 mt-2"
+                                data-toggle="modal"
+                                data-target={`#id${habit.habit_id}`}
+                                style={{
+                                    // margin: "10px",
+                                    background: '#6C63FF'
+                                }}
+                            >
+                                Close
+                            </button>
                         </div>
 
                     </div>

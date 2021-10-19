@@ -46,26 +46,40 @@ const AddHabit = ({ habit_name,setHabitsChange }) => {
     }
     return (
         <Fragment>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+            <button  type="button" style={{
+          background: '#6C63FF'
+        }}  className="btn text-light" data-toggle="modal" data-target="#myModal" 
+        style={{background: '#6C63FF'
+                }}>
                 Add
             </button>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">{habit_name}</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div className="modal" id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h4 className="modal-title">{habit_name}</h4>
+                            <button type="button" className="close" data-dismiss="modal">&times;</button>
                         </div>
 
-                        <div class="modal-body">
-                            <form className="d-flex">
-                                <div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="form-group">
                                     <label htmlFor="Duration">🔥Duration(In days)</label>
                                     <input type="number"
                                         id="Duration"
                                         placeholder="0"
-                                        onChange={element => setDuration(element.target.value)}
+                                        className="form-control"
+                                        min="0"
+                                        onChange={
+                                            e => {
+                                                // https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+                                                if (!e.target.validity.badInput) {
+                                                    setDuration(e.target.value)
+                                                 }
+                                            }
+                                        }
+                                        value={habit_duration && Math.max(0, habit_duration)}
                                     />
                                 </div>
 
@@ -75,18 +89,19 @@ const AddHabit = ({ habit_name,setHabitsChange }) => {
                                     <input type="text"
                                         id="Reward"
                                         size="25"
+                                        className="form-control"
                                         placeholder="Enter any reward for yourself"
                                         onChange={element => setReward(element.target.value)} />
                                 </div>
                             </form>
                         </div>
 
-                        <div class="modal-footer">
+                        <div className="modal-footer">
                             <button data-dismiss="modal"
                                 type="button"
-                                class="btn btn-success"
+                                className="btn btn-success"
                                 onClick={() => add(habit_name)}>Add</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
 
                     </div>

@@ -7,11 +7,11 @@ const InputHabit = ({setHabitsChange})=>{
 
     return(
         <Fragment>
-            <h1 className="text-center my-5">Habitizer</h1>
-            <form className="d-flex">
-                <input
+            {/* <h1 className="text-center my-5">Habitizer</h1> */}
+            <form className="d-flex mb-5">
+                <input 
                 type="text"
-                className="form-control"
+                className="form-control mr-2"
                 placeholder="Add a habit"
                 onChange = {element=>setHabit(element.target.value)}
                 />
