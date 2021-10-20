@@ -7,7 +7,6 @@ const InputHabit = ({setHabitsChange})=>{
 
     return(
         <Fragment>
-            {/* <h1 className="text-center my-5">Habitizer</h1> */}
             <form className="d-flex mb-5">
                 <input 
                 type="text"

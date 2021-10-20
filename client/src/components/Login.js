@@ -35,7 +35,6 @@ const Login = ({ setAuth }) => {
                 toast.success("Logged in Successfully!", {
                     position: toast.POSITION.TOP_CENTER
                   });
-                // toast.success("Logged in Successfully!");
             } else {
                 setAuth(false);
                 toast.error(parseRes);
@@ -65,7 +64,7 @@ const Login = ({ setAuth }) => {
                         <ul className="navbar-nav ms-auto">
 
                             <li className='nav-item'>
-                                <Link to="/register" class="nav-link text-dark font" ><h4 style={{ color: '#000000' }}>Register</h4></Link>
+                                <Link to="/register" className="nav-link text-dark font" ><h4 style={{ color: '#000000' }}>Register</h4></Link>
                             </li>
                         </ul>
                     </div>
@@ -115,34 +114,6 @@ const Login = ({ setAuth }) => {
                     </div>
                 </div>
             </section>
-
-
-            {/* <h1 className="mt-5 text-center">Sign in</h1>
-            <form
-                onSubmit={onSubmitForm}
-                className="m-5"
-            >
-                <input
-                    type="text"
-                    name="email"
-                    value={email}
-                    placeholder="Email"
-                    onChange={e => onChange(e)}
-                    className="form-control my-3"
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="Password"
-                    onChange={e => onChange(e)}
-                    className="form-control my-3"
-                />
-                <button style={{
-                    background: '#6C63FF'
-                }} className="btn btn-block rounded-pill text-light">Submit</button>
-            </form> */}
-
         </Fragment>
     )
 }

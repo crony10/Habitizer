@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useRef } from "react";
 import './fonts/fonts.css'
-import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCoffee, faUser, faFire, faBullseye, faGift } from "@fortawesome/free-solid-svg-icons"
+import {Button} from 'react-bootstrap';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faBullseye} from "@fortawesome/free-solid-svg-icons"
 
 
 const DoneHabit = ({ habit, setHabitsChange }) => {
@@ -90,7 +90,6 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
                 data-toggle="modal"
                 data-target={`#id${habit.habit_id}`}
                 style={{
-                    // margin: "10px",
                     background: '#6C63FF'
                 }}
             >
@@ -111,7 +110,6 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
                                 <span className="ml-2 h4" >
                                     Have you completed this habit today?
                                 </span>
-                                {/* <button type="button" className="close" data-dismiss="modal">&times;</button> */}
                             </div>
                         </div>
 
@@ -121,7 +119,6 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
                                     <Button type="button"
                                         className="btn btn-success custom-btn mr-1"
                                         data-dismiss="modal"
-                                        // className="btn btn-outline-primary mr-1"
                                         ref={yesRef}
                                         onClick={() => { increaseStreak(habit.habit_id, habit.habit_streak) }}>
                                         Yes
@@ -131,7 +128,6 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
                                     <button type="button"
                                         data-dismiss="modal"
                                         className="btn custom-btn ms-1"
-                                        // className="btn btn-outline-primary ms-1"
                                         onClick={() => { decreaseStreak(habit.habit_id, habit.habit_streak) }}>
                                         No
                                     </button>
@@ -142,15 +138,12 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
 
 
                         <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button> */}
-
                             <button
                                 type="button"
                                 className="btn text-light mr-3 ml-3 mt-2"
                                 data-toggle="modal"
                                 data-target={`#id${habit.habit_id}`}
                                 style={{
-                                    // margin: "10px",
                                     background: '#6C63FF'
                                 }}
                             >

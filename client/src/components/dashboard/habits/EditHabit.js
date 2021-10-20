@@ -2,11 +2,9 @@ import React, { Fragment, useState, useRef } from "react";
 import './fonts/fonts.css'
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCoffee, faUser, faFire, faBullseye, faGift, faCross, faWindowClose } from "@fortawesome/free-solid-svg-icons"
+import { faFire, faBullseye, faGift } from "@fortawesome/free-solid-svg-icons"
 
 const EditHabit = ({ habit, setHabitsChange }) => {
-    let yesRef = useRef();
-
     const [habit_id, setHabit_id] = useState(habit.habit_id);
     const [habit_name, setHabit_name] = useState(habit.habit_name);
     const [habit_duration, setHabit_duration] = useState(habit.habit_duration);
@@ -46,7 +44,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                 headers: { token: localStorage.token }
             });
             // console.log(response);
-            // setHabits(habits.filter(habit => habit.habit_id !== id))
             // window.location = "/";
             setHabitsChange(true);
         } catch (error) {
@@ -97,7 +94,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                                     <input type="text" className="form-control" value={habit_name} onChange={e => setHabit_name(e.target.value)} />
                                 </div>
                                 <div className="form-group">
-                                    {/* <label htmlFor="Duration">🔥Duration(In days)</label> */}
                                     <label htmlFor="Duration">
                                         <span className="my-auto h4">
                                             <FontAwesomeIcon className="" style={{
@@ -125,7 +121,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                                     />
                                 </div>
                                 <div >
-                                    {/* <label htmlFor="Reward">🎁Reward</label> */}
                                     <label htmlFor="Reward">
                                         <span className="my-auto h4">
                                             <FontAwesomeIcon className="" style={{
@@ -146,7 +141,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                             </form>
 
                             <div>
-                                {/* <label htmlFor="Reward">❌Delete the habit?</label> */}
                                 <label htmlFor="Reward">
 
                                     <span className="mt-5 mr-3 h4" >
@@ -155,7 +149,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                                 </label>
                                 <button
                                     data-dismiss="modal"
-                                    // style={{ margin: "10px" }}
                                     onClick={() => deleteHabit(habit_id)}
                                     className="btn btn-danger m-2">
                                     Delete
@@ -175,7 +168,6 @@ const EditHabit = ({ habit, setHabitsChange }) => {
                     </div>
                 </div>
             </div>
-            {/* {alert("alaa oooooo")} */}
         </Fragment>
     )
 }

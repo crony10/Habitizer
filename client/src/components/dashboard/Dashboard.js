@@ -5,9 +5,6 @@ import logo from "./icons/logo.png";
 import "./fonts/fonts.css"
 import dashboard from "./icons/dashboard.svg";
 import "./fonts/fonts.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCoffee, faFire, faUser } from "@fortawesome/free-solid-svg-icons"
-import { css } from 'glamor';
 
 // Components
 import InputHabit from "./habits/InputHabit"
@@ -74,8 +71,6 @@ const Dashboard = ({ setAuth }) => {
                     </div>
                 </nav>
 
-
-
                 <section className="text-dark p-5 p-lg-0 ">
                     <div className="container">
                         <div className="d-sm-flex justify-content-center flex-row">
@@ -94,14 +89,10 @@ const Dashboard = ({ setAuth }) => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </section>
 
-
                 <CardListHabit allHabits={allHabits} setHabitsChange={setHabitsChange} />
-
             </div>
         </>
     )

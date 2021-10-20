@@ -38,12 +38,10 @@ const Register = ({ setAuth }) => {
         setAuth(true);
         toast.success("Registered Successfully", {
           position: toast.POSITION.TOP_CENTER,
-          // className: 'toast-container',
           progressClassName: css({
             background: '#6c63ff',
           }),
         });
-        // toast.success("Register Successfully");
       } else {
         setAuth(false);
         toast.error(parseRes);
@@ -127,38 +125,6 @@ const Register = ({ setAuth }) => {
           </div>
         </div>
       </section>
-
-      {/* <h1 className="mt-5 text-center">Register</h1>
-      <form onSubmit={onSubmitForm}
-        className="m-5">
-        <input
-          type="text"
-          name="email"
-          value={email}
-          placeholder="email"
-          onChange={e => onChange(e)}
-          className="form-control my-3"
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="password"
-          onChange={e => onChange(e)}
-          className="form-control my-3"
-        />
-        <input
-          type="text"
-          name="name"
-          value={name}
-          placeholder="name"
-          onChange={e => onChange(e)}
-          className="form-control my-3"
-        />
-        <button style={{
-          background: '#6C63FF'
-        }} className="btn btn-block rounded-pill text-light">Submit</button>
-      </form> */}
     </Fragment>
   );
 };
