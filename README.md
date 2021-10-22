@@ -13,7 +13,8 @@
 **What if we had a tool that helped us building habits more efficiently by setting self proclaiming rewards.**
 
 ## Video demo :movie_camera:
-![Ye6vBE2jWY](https://user-images.githubusercontent.com/54499808/138437351-f60430da-bb40-446e-a76f-d0ee8512ab24.gif)
+![Ye6vBE2jWY(1)](https://user-images.githubusercontent.com/54499808/138444427-9a6ab3d1-00cd-44b9-afad-4f6c75b039cf.gif)
+
 
 ## Features :gift:
 - **Registration** <br><br>
