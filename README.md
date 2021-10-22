@@ -17,6 +17,13 @@
 
 
 ## Features :gift:
+
+![firefox_hn7x5Fwrl4](https://user-images.githubusercontent.com/54499808/138449316-944872f0-2573-49d5-9d40-db8981bcc47a.png)<br><br>
+
+
+![firefox_fvHRRwFsy7](https://user-images.githubusercontent.com/54499808/138449395-31ee639a-6d6b-4558-a451-8fc2932d9992.png)<br><br>
+
+
 - **Registration** <br><br>
 ![firefox_wzmO7Nfp8b](https://user-images.githubusercontent.com/54499808/138439142-28a2c7bb-444d-4579-80b2-7fc07bb1df18.png)
 
