@@ -66,6 +66,6 @@
 ## Technology Stack used :computer:
 - [PostgreSQL](https://www.postgresql.org/)
 - [Express.js](https://expressjs.com/)
-- [PostgreSQL](https://www.postgresql.org/)
 - [React.js](https://reactjs.org/)
+- [Node.js](https://nodejs.org/en/)
 
