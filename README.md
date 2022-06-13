@@ -76,3 +76,11 @@
 - [React.js](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en/)
 
+
+## License
+
+This software is open source, licensed under the [MIT](https://github.com/crony10/Habitizer/blob/master/License.md)
+
+
+
+
