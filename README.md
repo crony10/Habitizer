@@ -1,8 +1,5 @@
 <h1 align="center">Habitizer</h1>
 
-## Special thanks to my mentor and guide [Shambhavi Aggarwal](https://github.com/agg-shambhavi) who has helped immensely making this project successful.
-
-
 ![firefox_FZ05bnGFFh](https://user-images.githubusercontent.com/54499808/138438730-db041221-6ebd-47f9-9de7-6f5bdd77f5ac.png)
 
 
@@ -79,6 +76,8 @@
 - [React.js](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en/)
 
+## Credits 
+Special thanks to my mentor and guide [Shambhavi Aggarwal](https://github.com/agg-shambhavi) who has helped immensely making this project successful.
 
 ## License
 
