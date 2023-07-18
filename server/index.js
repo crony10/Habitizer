@@ -9,7 +9,7 @@ app.use(cors());
 
 
 // ROUTES //
-
+app.get("/", (req,res)=>{return res.json("OK")})
 
 // Register and login routes //
 app.use("/auth",require("./routes/jwtAuth"));
