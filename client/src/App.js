@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import "react-toastify/dist/ReactToastify.css";
+import config from "./config"
 import {
   BrowserRouter as Router,
   Route,
@@ -22,7 +23,7 @@ toast.configure();
 function App() {
   async function isAuth(){
     try {
-      const response = await fetch("http://localhost:5000/auth/is-verify",{
+      const response = await fetch(`${config.BASE_BACKEND_URL}/auth/is-verify`,{
         method: "GET",
 
         headers: {token: localStorage.token}
