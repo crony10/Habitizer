@@ -6,10 +6,6 @@ const authorization = require("../middleware/authorization");
 router.get("/", authorization, async (req, res) => {
     try {
         // res.json has the payload
-        // res.json(req.user);
-
-        // const user = await pool.query("SELECT user_name FROM users WHERE user_id = $1",[req.user]);
-
         const user = await pool.query(
             "SELECT u.user_name,h.habit_id,h.habit_name,h.habit_reward,h.habit_duration,h.habit_streak  FROM users AS u LEFT JOIN habits AS h ON u.user_id = h.user_id WHERE u.user_id = $1", [req.user.id]
         );
