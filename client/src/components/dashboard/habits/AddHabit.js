@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFire, faGift } from "@fortawesome/free-solid-svg-icons"
+import config from "../../../config"
+
 
 
 
@@ -29,7 +31,7 @@ const AddHabit = ({ habit_name, setHabitsChange }) => {
 
             const body = { name, reward, duration };
             console.log(body);
-            const response = await fetch("http://localhost:5000/dashboard/habits/",
+            const response = await fetch(`${config.BASE_BACKEND_URL}/dashboard/habits/`,
                 {
                     method: "POST",
                     headers: myHeaders,

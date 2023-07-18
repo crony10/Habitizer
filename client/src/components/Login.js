@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "./icons/logo.png";
 import register from "./icons/register.svg";
+import config from "../config"
 
 const Login = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
@@ -17,7 +18,7 @@ const Login = ({ setAuth }) => {
         try {
             const body = { email, password };
             const response = await fetch(
-                "http://localhost:5000/auth/login",
+                `${config.BASE_BACKEND_URL}/auth/login`,
                 {
                     method: "POST",
                     headers: {

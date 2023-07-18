@@ -3,6 +3,8 @@ import './fonts/fonts.css'
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFire, faBullseye, faGift } from "@fortawesome/free-solid-svg-icons"
+import config from "../../../config"
+
 
 const EditHabit = ({ habit, setHabitsChange }) => {
     const [habit_id, setHabit_id] = useState(habit.habit_id);
@@ -24,7 +26,7 @@ const EditHabit = ({ habit, setHabitsChange }) => {
             myHeaders.append("Content-type", "application/json");
             myHeaders.append("token", localStorage.token);
 
-            const res = await fetch(`http://localhost:5000/dashboard/habits/${id}`, {
+            const res = await fetch(`${config.BASE_BACKEND_URL}/dashboard/habits/${id}`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: JSON.stringify(body)
@@ -39,7 +41,7 @@ const EditHabit = ({ habit, setHabitsChange }) => {
 
     async function deleteHabit(id) {
         try {
-            const response = await fetch(`http://localhost:5000/dashboard/habits/${id}`, {
+            const response = await fetch(`${config.BASE_BACKEND_URL}/dashboard/habits/${id}`, {
                 method: "DELETE",
                 headers: { token: localStorage.token }
             });
@@ -71,7 +73,7 @@ const EditHabit = ({ habit, setHabitsChange }) => {
 
                         <div className="modal-header">
                             <div >
-                                <h4 className="m-5" className="modal-title">{habit_name}</h4>
+                                <h4 className="m-5 modal-title">{habit_name}</h4>
                             </div>
 
                             <button type="button" className="close" data-dismiss="modal">&times;</button>

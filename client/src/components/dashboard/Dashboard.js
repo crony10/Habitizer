@@ -5,6 +5,8 @@ import logo from "./icons/logo.png";
 import "./fonts/fonts.css"
 import dashboard from "./icons/dashboard.svg";
 import "./fonts/fonts.css"
+import config from "../../config"
+
 
 // Components
 import InputHabit from "./habits/InputHabit"
@@ -18,7 +20,7 @@ const Dashboard = ({ setAuth }) => {
 
     async function getName() {
         try {
-            const response = await fetch("http://localhost:5000/dashboard/", {
+            const response = await fetch(`${config.BASE_BACKEND_URL}/dashboard/`, {
                 method: "GET",
                 headers: { token: localStorage.token }
             });

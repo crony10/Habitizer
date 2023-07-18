@@ -3,6 +3,7 @@ import './fonts/fonts.css'
 import {Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBullseye} from "@fortawesome/free-solid-svg-icons"
+import config from "../../../config"
 
 
 const DoneHabit = ({ habit, setHabitsChange }) => {
@@ -37,7 +38,7 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
             myHeaders.append("Content-type", "application/json");
             myHeaders.append("token", localStorage.token);
 
-            const res = await fetch(`http://localhost:5000/dashboard/habits/increaseStreak/${id}`, {
+            const res = await fetch(`${config.BASE_BACKEND_URL}/dashboard/habits/increaseStreak/${id}`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: JSON.stringify(body)
@@ -68,7 +69,7 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
             myHeaders.append("Content-type", "application/json");
             myHeaders.append("token", localStorage.token);
 
-            const res = await fetch(`http://localhost:5000/dashboard/habits/decreaseStreak/${id}`, {
+            const res = await fetch(`${config.BASE_BACKEND_URL}/dashboard/habits/decreaseStreak/${id}`, {
                 method: "PUT",
                 headers: myHeaders,
                 body: JSON.stringify(body)
