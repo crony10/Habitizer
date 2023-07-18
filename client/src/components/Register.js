@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import logo from "./icons/logo.png";
 import register from "./icons/register.svg";
 import { css } from 'glamor';
+import config from "../config"
 
 const Register = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -22,7 +23,7 @@ const Register = ({ setAuth }) => {
     try {
       const body = { email, password, name };
       const response = await fetch(
-        "http://localhost:5000/auth/register",
+        `${config.BASE_BACKEND_URL}/auth/register`,
         {
           method: "POST",
           headers: {
