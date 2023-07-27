@@ -1,5 +1,6 @@
 global.config = {
-    BASE_BACKEND_URL : "https://habitizernode.onrender.com"
+    BASE_BACKEND_URL : "https://habitizer-be-v2.onrender.com"
+    // BASE_BACKEND_URL : "http://localhost:5000"
 }
 
 
