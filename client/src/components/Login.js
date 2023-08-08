@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import logo from "./icons/logo.png";
 import register from "./icons/register.svg";
 import config from "../config"
+import "../assets/css/spinner.css"
 
 const Login = ({ setAuth }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [inputs, setInputs] = useState({
         email: "",
         password: ""
@@ -16,35 +18,49 @@ const Login = ({ setAuth }) => {
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
-            const body = { email, password };
-            const response = await fetch(
-                `${config.BASE_BACKEND_URL}/auth/login`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
+            const emailPattern = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+            if (!emailPattern.test(email)) {
+                toast.error("Enter valid email");
+            }
+            else{
+                setIsLoading(true);
+                const body = { email, password };
+                const response = await fetch(
+                    `${config.BASE_BACKEND_URL}/auth/login`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify(body)
+                    }
+                );
+
+                const parseRes = await response.json();
+
+                if (parseRes.token) {
+                    localStorage.setItem("token", parseRes.token);
+                    setAuth(true);
+                    toast.success("Logged in Successfully!", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                    setIsLoading(false);
+                } else {
+                    setIsLoading(false);
+                    setAuth(false);
+                    toast.error(parseRes);
                 }
-            );
-
-            const parseRes = await response.json();
-
-            if (parseRes.token) {
-                localStorage.setItem("token", parseRes.token);
-                setAuth(true);
-                toast.success("Logged in Successfully!", {
-                    position: toast.POSITION.TOP_CENTER
-                  });
-            } else {
-                setAuth(false);
-                toast.error(parseRes);
             }
 
         } catch (err) {
             console.error(err.message);
         }
     };
+
+    const checkField = ()=>{
+        if(inputs.email===""||inputs.password==="" || isLoading) return true;
+        else return false; 
+    }
 
     const onChange = e =>
         setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -73,6 +89,7 @@ const Login = ({ setAuth }) => {
             </nav>
 
             <section>
+
                 <div className="container py-2">
                     <div className="d-sm-flex justify-content-center">
                         <div className="pr-5">
@@ -107,9 +124,21 @@ const Login = ({ setAuth }) => {
                                     onChange={e => onChange(e)}
                                     className="form-control my-3"
                                 />
-                                <button style={{
-                                    background: '#6C63FF'
-                                }} className="btn btn-block rounded-pill text-light">Submit</button>
+                                <button
+                                    style={{ background: '#6C63FF' }}
+                                    className="btn btn-block rounded-pill text-light"
+                                    disabled={checkField()}
+                                >
+                                    {
+                                        isLoading && (
+                                            <span
+                                                class="spinner-border spinner-border-sm mr-2"
+                                                role="status"
+                                                aria-hidden="true"
+                                            ></span>
+                                        )
+                                    }
+                                    Submit</button>
                             </form>
                         </div>
                     </div>

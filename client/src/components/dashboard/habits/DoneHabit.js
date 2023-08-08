@@ -6,7 +6,7 @@ import {faBullseye} from "@fortawesome/free-solid-svg-icons"
 import config from "../../../config"
 
 
-const DoneHabit = ({ habit, setHabitsChange }) => {
+const DoneHabit = ({ habit, setHabitsChange, setIsLoading, setHabitLoading }) => {
     let yesRef = useRef();
 
     const [habit_id, setHabit_id] = useState(habit.habit_id);
@@ -14,6 +14,8 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
     // Function to increase a streak
     const increaseStreak = async (id, habit_streak) => {
         try {
+            // setIsLoading(true)
+            setHabitLoading(`loading-${habit_id}`)
 
             yesRef.current.setAttribute("disabled", "disabled");
 
@@ -46,7 +48,9 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
             // console.log(res);
             // window.location = "/";
             setHabitsChange(true);
+            setHabitLoading(""); 
         } catch (err) {
+            setHabitLoading(""); 
             console.errror(err.message)
         }
     }
@@ -54,6 +58,7 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
     // Function to decrease a streak
     const decreaseStreak = async (id, habit_streak) => {
         try {
+            setIsLoading(true); 
             if (habit_streak !== 0)
                 habit_streak -= 1;
             else {
@@ -77,7 +82,9 @@ const DoneHabit = ({ habit, setHabitsChange }) => {
             console.log(res);
             // window.location = "/";
             setHabitsChange(true);
+            setIsLoading(false); 
         } catch (err) {
+            setIsLoading(false); 
             console.errror(err.message)
         }
     }

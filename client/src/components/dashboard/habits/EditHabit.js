@@ -6,16 +6,17 @@ import { faFire, faBullseye, faGift } from "@fortawesome/free-solid-svg-icons"
 import config from "../../../config"
 
 
-const EditHabit = ({ habit, setHabitsChange }) => {
+const EditHabit = ({ habit, setHabitsChange, setIsLoading }) => {
     const [habit_id, setHabit_id] = useState(habit.habit_id);
     const [habit_name, setHabit_name] = useState(habit.habit_name);
     const [habit_duration, setHabit_duration] = useState(habit.habit_duration);
     const [habit_reward, setHabit_reward] = useState(habit.habit_reward);
-
+    
 
     const editText = async (id) => {
 
         try {
+            setIsLoading(true)
             const name = habit_name;
             const duration = habit_duration;
             const reward = habit_reward;
@@ -34,7 +35,10 @@ const EditHabit = ({ habit, setHabitsChange }) => {
             // console.log(res); 
             // window.location = "/";
             setHabitsChange(true);
+            setIsLoading(false)
+
         } catch (err) {
+            setIsLoading(false)
             console.errror(err.message)
         }
     }

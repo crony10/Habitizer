@@ -5,8 +5,10 @@ import logo from "./icons/logo.png";
 import register from "./icons/register.svg";
 import { css } from 'glamor';
 import config from "../config"
+import "../assets/css/spinner.css"
 
 const Register = ({ setAuth }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -21,37 +23,47 @@ const Register = ({ setAuth }) => {
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
-      const body = { email, password, name };
-      const response = await fetch(
-        `${config.BASE_BACKEND_URL}/auth/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(body)
-        }
-      );
-      const parseRes = await response.json();
+      const emailPattern = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+      if (!emailPattern.test(email)) {
+        toast.error("Enter valid email");
+      }
+      else {
+        const body = { email, password, name };
+        const response = await fetch(
+          `${config.BASE_BACKEND_URL}/auth/register`,
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify(body)
+          }
+        );
+        const parseRes = await response.json();
 
-      if (parseRes.jwtToken) {
-        localStorage.setItem("token", parseRes.jwtToken);
-        setAuth(true);
-        toast.success("Registered Successfully", {
-          position: toast.POSITION.TOP_CENTER,
-          progressClassName: css({
-            background: '#6c63ff',
-          }),
-        });
-      } else {
-        setAuth(false);
-        toast.error(parseRes);
+        if (parseRes.jwtToken) {
+          localStorage.setItem("token", parseRes.jwtToken);
+          setAuth(true);
+          toast.success("Registered Successfully", {
+            position: toast.POSITION.TOP_CENTER,
+            progressClassName: css({
+              background: '#6c63ff',
+            }),
+          });
+        } else {
+          setAuth(false);
+          toast.error(parseRes);
+        }
       }
 
     } catch (err) {
       console.error(err.message);
     }
   };
+  const checkField = () => {
+    if (inputs.email === "" || inputs.password === "" || inputs.name === "") return true;
+    else return false;
+  }
 
   return (
     <Fragment>
@@ -120,7 +132,18 @@ const Register = ({ setAuth }) => {
                 />
                 <button style={{
                   background: '#6C63FF'
-                }} className="btn btn-block rounded-pill text-light">Submit</button>
+                }} className="btn btn-block rounded-pill text-light"
+                disabled={checkField()}
+                >
+                  {
+                    isLoading && (
+                      <span
+                        class="spinner-border spinner-border-sm mr-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    )
+                  }Submit</button>
               </form>
             </div>
           </div>

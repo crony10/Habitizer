@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFire, faGift } from "@fortawesome/free-solid-svg-icons"
 import config from "../../../config"
-
+import "../../../assets/css/spinner.css"
 
 
 
@@ -10,11 +10,14 @@ const AddHabit = ({ habit_name, setHabitsChange }) => {
 
     const [habit_duration, setDuration] = useState(0);
     const [habit_reward, setReward] = useState("");
+    const [isLoading,setIsLoading] = useState(false); 
+
 
     const add = async () => {
 
         try {
 
+            setIsLoading(true); 
             const myHeaders = new Headers();
 
             myHeaders.append("Content-Type", "application/json");
@@ -43,7 +46,9 @@ const AddHabit = ({ habit_name, setHabitsChange }) => {
             // console.log(response);
             // window.location = "/";
             setHabitsChange(true);
+            setIsLoading(false); 
         } catch (err) {
+            setIsLoading(false); 
             console.log(err.message);
         }
     }
@@ -119,6 +124,13 @@ const AddHabit = ({ habit_name, setHabitsChange }) => {
                         </div>
 
                         <div className="modal-footer">
+                            {isLoading && (
+                                <span
+                                class="spinner-border spinner-border-sm mr-2"
+                                role="status"
+                                aria-hidden="true"
+                              ></span>
+                            )}
                             <button type="button" data-dismiss="modal" style={{
                                 background: '#6C63FF'
                             }} onClick={() => add(habit_name)} className="btn text-light">
