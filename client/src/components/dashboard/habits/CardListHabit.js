@@ -107,7 +107,7 @@ const CardListHabit = ({ allHabits, setHabitsChange }) => {
         <div className="container">
             <ul style={{ listStyleType: "none" }}>
                 {habits.length !== 0 && habits[0].habit_id !== null &&
-                    habits.map(habit => {
+                    habits?.map(habit => {
                         return <CardListItem 
                         habit={habit} 
                         key={habit.habit_id} 

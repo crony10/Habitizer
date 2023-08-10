@@ -19,15 +19,13 @@ const DoneHabit = ({ habit, setHabitsChange, setIsLoading, setHabitLoading }) =>
 
             yesRef.current.setAttribute("disabled", "disabled");
 
-            if ((habit_streak + 1) === habit.habit_duration) {
-                alert("Congratulation now you can claim your reward of: " + habit.habit_reward);
-                return;
-            }
-            else if (habit.habit_streak !== habit.habit_duration) {
+            
+            if (habit.habit_streak !== habit.habit_duration) {
                 habit_streak += 1;
             }
             else {
                 alert("Congratulation now you can claim your reward of: " + habit.habit_reward);
+                setHabitLoading(``)
                 return;
             }
 
@@ -58,11 +56,12 @@ const DoneHabit = ({ habit, setHabitsChange, setIsLoading, setHabitLoading }) =>
     // Function to decrease a streak
     const decreaseStreak = async (id, habit_streak) => {
         try {
-            setIsLoading(true); 
+            setHabitLoading(`loading-${habit_id}`)
             if (habit_streak !== 0)
                 habit_streak -= 1;
             else {
                 alert("you at least have to complete one day")
+                setHabitLoading(``)
                 return;
             }
 
@@ -82,9 +81,9 @@ const DoneHabit = ({ habit, setHabitsChange, setIsLoading, setHabitLoading }) =>
             console.log(res);
             // window.location = "/";
             setHabitsChange(true);
-            setIsLoading(false); 
+            setHabitLoading(``)
         } catch (err) {
-            setIsLoading(false); 
+            setHabitLoading(``)
             console.errror(err.message)
         }
     }
