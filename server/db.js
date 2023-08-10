@@ -1,11 +1,12 @@
 const Pool = require("pg").Pool;
+require('dotenv').config();
 
 const pool = new Pool({
-    user: "habitizerdb_v2_user",
-    password: "HulTJbVAcQPujQxB7wHPegG9hpLLwb8U",
-    host: "dpg-cj16rii7l0ft7nkm1ql0-a.oregon-postgres.render.com",
-    port: 5432,
-    database: "habitizerdb_v2",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
     ssl: {
         rejectUnauthorized: false // Adjust this based on your SSL configuration
     }
